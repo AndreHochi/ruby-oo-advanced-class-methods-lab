@@ -43,5 +43,35 @@ class Song
     end
     temp
   end
+  
+  def self.alphabetical
+    @@all.sort_by do |song_object|
+      song_object.name
+    end
+  end
+
+  def self.new_from_filename(song)
+    split1= song.split(" - ")
+    split2= split1[1].split(".")[0]
+    some_variable=self.new
+    some_variable.name=split2
+    some_variable.artist_name=split1[0]
+    some_variable
+  end
+
+  def self.create_from_filename (song)
+    split1= song.split(" - ")
+    split2= split1[1].split(".")[0]
+    some_variable=self.new
+    some_variable.name=split2
+    some_variable.artist_name=split1[0]
+    some_variable.save
+    some_variable
+  end
+
+  def self.destroy_all
+   @@all=[] 
+  
+  end
 
 end
